@@ -7,12 +7,13 @@
 
 let taskInput = document.getElementById("task-input");
 let addButton = document.getElementById("add-button");
-let tabs = document.querySelectorAll(".task-tabs div")
+let underLine = document.getElementById("under-line");
+let tabs = document.querySelectorAll(".task-tabs div");
 let taskList = [];
-let filterList = []
+let filterList = [];
 let mode = "all";
 
-console.log(tabs)
+tabs.forEach(menu=>menu.addEventListener("click", function(event){underLineIndicator(event)}));
 
 for(let i = 1; i < tabs.length; i++){
     tabs[i].addEventListener("click", function(event){filter(event)});
@@ -27,8 +28,6 @@ function addTask() {
         isComplete: false
     }
     taskList.push(task);
-    console.log(task)
-
     render();
 }
 
@@ -36,17 +35,11 @@ function render() {
     let resultHTML = '';
     let list = [];
 
-    console.log(mode)
-
     if(mode === "all")
     {
         list = taskList;
     }
-    else if(mode === "ongoing")
-    {
-        list = filterList;
-    }
-    else if(mode === "done")
+    else if((mode === "ongoing") || (mode === "done"))
     {
         list = filterList;
     }
@@ -59,7 +52,7 @@ function render() {
             <div class="task-done">${list[i].taskContent}</div>
             <div>
                 <button onclick="toggleComplete('${list[i].id}')">check</button>
-                <button onclick="taskDelete">delete</button>
+                <button onclick="taskDelete('${list[i].id}')">delete</button>
             </div>
             </div>`;
         }
@@ -91,10 +84,6 @@ function toggleComplete(id) {
     render();
 }
 
-function randomIDGenerate() {
-    return '_' + Math.random().toString(36).substr(2, 9);
-}
-
 function taskDelete(id) {
     for(let i = 0; i < taskList.length; i++)
     {
@@ -104,7 +93,24 @@ function taskDelete(id) {
             break;
         }
     }
+
+    if((mode === "ongoing") || (mode === "done"))
+    {
+        for(let i = 0; i < filterList.length; i++)
+        {
+            if(filterList[i].id == id)
+            {
+                filterList.splice(i, 1);
+                break;
+            }
+        }
+    }
+
     render();
+}
+
+function randomIDGenerate() {
+    return '_' + Math.random().toString(36).substr(2, 9);
 }
 
 function filter(event) {
@@ -137,4 +143,10 @@ function filter(event) {
         }
         render();
     }
+}
+
+function underLineIndicator(event) {
+    underLine.style.left = event.currentTarget.offsetLeft + "px";
+    underLine.style.width = event.currentTarget.offsetWidth + "px";
+    underLine.style.top = event.currentTarget.offsetTop + event.currentTarget.offsetHeight + -2 + "px";
 }

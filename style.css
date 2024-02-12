@@ -12,13 +12,14 @@ body {
 }
 
 #under-line {
-    height: 4px;
+    height: 2px;
     width: 60px;
     background-color: pink;
     position: absolute;
     left: 0px;
     top: 52px;
     padding: 0px;
+    transition: 0.5s;
 }
 
 .task-area {
@@ -33,7 +34,6 @@ body {
 
 .task-tabs div {
     padding: 1em;
-    cursor: pointer;
 }
 
 .task-list {
