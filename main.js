@@ -150,3 +150,10 @@ function underLineIndicator(event) {
     underLine.style.width = event.currentTarget.offsetWidth + "px";
     underLine.style.top = event.currentTarget.offsetTop + event.currentTarget.offsetHeight + -2 + "px";
 }
+
+function enterkey() {
+	if (window.event.keyCode == 13) {
+    	// 엔터키가 눌렸을 때
+        addTask();
+    }
+}
