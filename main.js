@@ -52,7 +52,7 @@ function render() {
         {
             resultHTML += `<div class="task-list task-list-done">
             <div class="task-done">${list[i].taskContent}</div>
-            <div>
+            <div class="button-area">
                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked="checked" onclick="toggleComplete('${list[i].id}')"/>
                 <button type="button" class="btn-close shadow-none" aria-label="Close" onclick="taskDelete('${list[i].id}')"></button>
             </div>
@@ -61,7 +61,7 @@ function render() {
         else{
             resultHTML += `<div class="task-list">
             <div>${list[i].taskContent}</div>
-            <div>
+            <div class="button-area">
                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" onclick="toggleComplete('${list[i].id}')"/>
                 <button type="button" class="btn-close shadow-none" aria-label="Close" onclick="taskDelete('${list[i].id}')"></button>
             </div>
