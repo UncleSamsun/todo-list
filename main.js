@@ -29,6 +29,8 @@ function addTask() {
     }
     taskList.push(task);
     render();
+
+    taskInput.value = "";
 }
 
 function render() {
@@ -48,11 +50,11 @@ function render() {
     {
         if(list[i].isComplete == true)
         {
-            resultHTML += `<div class="task-list">
+            resultHTML += `<div class="task-list task-list-done">
             <div class="task-done">${list[i].taskContent}</div>
             <div>
-                <button onclick="toggleComplete('${list[i].id}')">check</button>
-                <button onclick="taskDelete('${list[i].id}')">delete</button>
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked="checked" onclick="toggleComplete('${list[i].id}')"/>
+                <button type="button" class="btn-close shadow-none" aria-label="Close" onclick="taskDelete('${list[i].id}')"></button>
             </div>
             </div>`;
         }
@@ -60,12 +62,14 @@ function render() {
             resultHTML += `<div class="task-list">
             <div>${list[i].taskContent}</div>
             <div>
-                <button onclick="toggleComplete('${list[i].id}')">check</button>
-                <button onclick="taskDelete('${list[i].id}')">delete</button>
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" onclick="toggleComplete('${list[i].id}')"/>
+                <button type="button" class="btn-close shadow-none" aria-label="Close" onclick="taskDelete('${list[i].id}')"></button>
             </div>
             </div>`;
         }
     }
+
+    // <button class="check-button rounded" onclick="toggleComplete('${list[i].id}')"> Check </button>
 
     document.getElementById("task-board").innerHTML = resultHTML;
 }
