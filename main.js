@@ -22,6 +22,13 @@ for(let i = 1; i < tabs.length; i++){
 addButton.addEventListener("click", addTask);
 
 function addTask() {
+
+    if(taskInput.value == "")
+    {
+        alert("내용을 입력해주세요!");
+        return 0;
+    }
+
     let task = {
         id: randomIDGenerate(),
         taskContent: taskInput.value, 
